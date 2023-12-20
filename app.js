@@ -1,9 +1,10 @@
 import express from "express";
+import { InteractionResponseType, InteractionType } from "discord-interactions";
 import { VerifyDiscordRequest } from "./utils.js";
 
 const app = express();
-
 const PORT = process.env.PORT || 3000;
+
 // Verify discord request
 app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
 
@@ -27,7 +28,7 @@ app.post("/interactions", async function (req, res) {
 
     // "test" command
     if (name === "search") {
-        console.log("You are hitting this endpoint")
+      console.log("You are hitting this endpoint");
       // Send a message into the channel where command was triggered from
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,

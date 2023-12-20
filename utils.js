@@ -41,7 +41,7 @@ export async function DiscordRequest(endpoint, options) {
       Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
       "Content-Type": "application/json; charset=UTF-8",
       "User-Agent":
-        "DiscordBot (https://github.com/discord/discord-example-app, 1.0.0)",
+        "DiscordBot (https://github.com/SquidDOTjpeg/PPHelper, 1.0.0)",
     },
     ...options,
   });
