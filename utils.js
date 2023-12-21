@@ -15,21 +15,40 @@ export function VerifyDiscordRequest(clientKey) {
   };
 }
 
-export async function InstallGlobalCommands(appId, commands) {
+export async function InstallGlobalCommands(commands) {
   // API endpoint to overwrite global commands
-  const endpoint = `applications/${appId}/commands`;
+  const endpoint = `applications/${process.env.APP_ID}/commands`;
 
   try {
     // This is calling the bulk overwrite endpoint: https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands
-    const res = await DiscordRequest(endpoint, { method: "PUT", body: commands });
-    console.log(res)
+    const res = await DiscordRequest(endpoint, {
+      method: "PUT",
+      body: commands,
+    });
+    console.log(res);
+    console.log("==== COMMANDS SUCCESSFULLY REGISTERED ====");
   } catch (err) {
     console.error(err);
   }
 }
 
+export async function InstallGuildCommands(commands) {
+  // API endpoint to overwrite global commands
+  const endpoint = `applications/${process.env.APP_ID}/guilds/${process.env.GUILD_ID}/commands`;
 
-// Not sure where I would use this
+  try {
+    // This is calling the bulk overwrite endpoint: https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands
+    const res = await DiscordRequest(endpoint, {
+      method: "PUT",
+      body: commands,
+    });
+    console.log(res);
+    console.log("==== COMMANDS SUCCESSFULLY REGISTERED ====");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export async function DiscordRequest(endpoint, options) {
   // append endpoint to root API URL
   const url = "https://discord.com/api/v10/" + endpoint;
