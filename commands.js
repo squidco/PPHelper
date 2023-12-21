@@ -7,8 +7,14 @@ const SEARCH_COMMAND = {
   type: 1,
   options: [
     {
-      name: "player",
-      description: "The name of the player",
+      name: "firstname",
+      description: "Player's first name",
+      type: 3,
+      required: true
+    },
+    {
+      name: "lastname",
+      description: "Player's last name",
       type: 3,
       required: true
     },

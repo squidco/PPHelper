@@ -30,7 +30,10 @@ app.post("/interactions", async function (req, res) {
     // "nba" command
     if (name === "nba") {
       console.log(req.body);
-      console.log(data.options);
+      // Should be the first name
+      console.log(data.options[0].value);
+      // Should be the last name
+      console.log(data.options[1].value);
       // API url and options
       // const url = "https://api-nba-v1.p.rapidapi.com/players?search=james";
       // const options = {
