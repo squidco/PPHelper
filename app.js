@@ -1,6 +1,7 @@
 import express from "express";
 import fetch from "node-fetch";
 import { InteractionResponseType, InteractionType } from "discord-interactions";
+import { queryPlayer } from "./queries.js";
 import { VerifyDiscordRequest } from "./utils.js";
 
 const app = express();
@@ -29,36 +30,27 @@ app.post("/interactions", async function (req, res) {
 
     // "nba" command
     if (name === "nba") {
-      console.log(req.body);
+      // console.log(req.body);
       // Should be the first name
-      console.log(data.options[0].value);
+      // console.log(data.options[0].value);
+      const firstName = data.options[0].value;
       // Should be the last name
-      console.log(data.options[1].value);
-      // API url and options
-      // const url = "https://api-nba-v1.p.rapidapi.com/players?search=james";
-      // const options = {
-      //   method: "GET",
-      //   headers: {
-      //     "X-RapidAPI-Key": process.env.API_KEY,
-      //     "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com",
-      //   },
-      // };
+      // console.log(data.options[1].value);
+      const lastName = data.options[0].value;
       // Attempt to fetch data from API-NBA
-      // try {
-      //   const response = await fetch(url, options);
-      //   const result = await response;
-      //   console.log(result.id);
-      //   // Send a message into the channel where command was triggered from
-      //   return res.send({
-      //     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      //     data: {
-      //       // Returns API response
-      //       content: result.id,
-      //     },
-      //   });
-      // } catch (error) {
-      //   console.error(error);
-      // }
+      try {
+        const playerInfo = await queryPlayer(firstName, lastName)
+        // Send a message into the channel where command was triggered from
+        return res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            // Returns API response
+            content: playerInfo
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 });

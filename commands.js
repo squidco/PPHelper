@@ -18,19 +18,7 @@ const SEARCH_COMMAND = {
       type: 3,
       required: true
     },
-    {
-        name: "stat",
-        description: "Specify which stat you want",
-        type: 3,
-        required: false,
-        choices: [
-            {
-                name: "Stat",
-                value: "stat"
-            }
-        ]
-    }
-  ],
+  ]
 };
 
 const ALL_COMMANDS = [SEARCH_COMMAND];
