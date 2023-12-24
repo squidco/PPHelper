@@ -35,7 +35,7 @@ async function getPlayerStats(playerId) {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "3e68f6601bmsh98481ff1e26610bp16fb41jsndbd319e17882",
+      "X-RapidAPI-Key": process.env.API_KEY,
       "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com",
     },
   };
