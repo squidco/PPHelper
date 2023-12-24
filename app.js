@@ -1,5 +1,4 @@
 import express from "express";
-import fetch from "node-fetch";
 import { InteractionResponseType, InteractionType } from "discord-interactions";
 import { queryPlayer } from "./queries.js";
 import { VerifyDiscordRequest } from "./utils.js";

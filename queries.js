@@ -18,6 +18,7 @@ async function getPlayerId(firstName, lastName) {
   try {
     const response = await fetch(url, options);
     const result = await response;
+    console.log(result)
     // Loop through results to see if the player exists
     for (const player of result.response) {
       if (lowerFirst === player.firstname.toLowerCase()) {
@@ -29,6 +30,7 @@ async function getPlayerId(firstName, lastName) {
   }
 }
 
+// Queries for player stats by ID
 async function getPlayerStats(playerId) {
   const currentYear = new Date().getFullYear();
   const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${playerId}&season=${currentYear}`;
@@ -51,6 +53,7 @@ async function getPlayerStats(playerId) {
 
 export async function queryPlayer(firstName, lastName) {
   const playerId = await getPlayerId(firstName, lastName);
+  console.log(playerId)
   const playerStats = await getPlayerStats(playerId);
   return playerStats;
 }
