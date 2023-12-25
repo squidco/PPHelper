@@ -1,7 +1,7 @@
 import "dotenv/config";
 import fetch from "node-fetch";
 
-// Queries for a player by lastname
+// Queries for a player by last name
 async function getPlayerId(firstName, lastName) {
   const lowerFirst = firstName.toLowerCase();
   const lowerLast = lastName.toLowerCase();
@@ -17,7 +17,7 @@ async function getPlayerId(firstName, lastName) {
 
   try {
     const response = await fetch(url, options);
-    const result = await response;
+    const result = await response.json();
     console.log("THIS IS THE RESULT",result)
     // Loop through results to see if the player exists
     for (const player of result.response) {
@@ -44,7 +44,7 @@ async function getPlayerStats(playerId) {
 
   try {
     const response = await fetch(url, options);
-    const result = await response.text();
+    const result = await response.json();
     return result;
   } catch (error) {
     console.error(error);
