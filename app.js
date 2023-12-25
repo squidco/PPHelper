@@ -31,7 +31,7 @@ app.post("/interactions", async function (req, res) {
     if (name === "nba") {
       // console.log(req.body);
       // Should be the first name
-      // console.log(data.options[0].value);
+      console.log(data.options);
       const firstName = data.options[0].value;
       // Should be the last name
       // console.log(data.options[1].value);
