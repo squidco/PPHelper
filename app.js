@@ -45,7 +45,7 @@ app.post("/interactions", async function (req, res) {
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
             // Returns API response
-            content: playerInfo.text(),
+            content: Object.keys(playerInfo),
           },
         });
       } catch (error) {
