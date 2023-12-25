@@ -73,3 +73,7 @@ export async function DiscordRequest(endpoint, options) {
   // return original response
   return res;
 }
+
+export function averageStats(statArray) {
+
+}
