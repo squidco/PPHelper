@@ -18,7 +18,7 @@ async function getPlayerId(firstName, lastName) {
   try {
     const response = await fetch(url, options);
     const result = await response;
-    console.log(result)
+    console.log("THIS IS THE RESULT",result)
     // Loop through results to see if the player exists
     for (const player of result.response) {
       if (lowerFirst === player.firstname.toLowerCase()) {
