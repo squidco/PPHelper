@@ -38,13 +38,14 @@ app.post("/interactions", async function (req, res) {
       const lastName = data.options[1].value;
       // Attempt to fetch data from API-NBA
       try {
-        const playerInfo = await queryPlayer(firstName, lastName)
+        const playerInfo = await queryPlayer(firstName, lastName);
+        console.log("\n PLAYER INFO \n", playerInfo);
         // Send a message into the channel where command was triggered from
         return res.send({
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
             // Returns API response
-            content: playerInfo
+            content: playerInfo,
           },
         });
       } catch (error) {
