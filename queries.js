@@ -1,5 +1,6 @@
 import "dotenv/config";
 import fetch from "node-fetch";
+import { averageStats } from "./utils.js";
 
 // Queries for a player by last name
 async function getPlayerId(firstName, lastName) {
@@ -18,7 +19,7 @@ async function getPlayerId(firstName, lastName) {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log("THIS IS THE RESULT",result)
+    console.log("THIS IS THE RESULT", result);
     // Loop through results to see if the player exists
     for (const player of result.response) {
       if (lowerFirst === player.firstname.toLowerCase()) {
@@ -53,7 +54,8 @@ async function getPlayerStats(playerId) {
 
 export async function queryPlayer(firstName, lastName) {
   const playerId = await getPlayerId(firstName, lastName);
-  console.log(playerId)
   const playerStats = await getPlayerStats(playerId);
-  return playerStats;
+  const averagedPlayerStats = averageStats(playerStats.response);
+  console.log(averagedPlayerStats);
+  return averagedPlayerStats;
 }

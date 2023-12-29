@@ -75,5 +75,53 @@ export async function DiscordRequest(endpoint, options) {
 }
 
 export function averageStats(statArray) {
+  // Get number of games played this season to use when averaging data
+  const gamesPlayed = statArray.length;
+  // Create list of important stats
+  let averages = {
+    points: 0,
+    min: 0,
+    fga: 0,
+    fgm: 0,
+    ftm: 0,
+    fta: 0,
+    tpm: 0,
+    tpa: 0,
+    offReb: 0,
+    defReb: 0,
+    totReb: 0,
+    assists: 0,
+    steals: 0,
+    turnovers: 0,
+    blocks: 0
+  };
 
+  // Add up all stats
+  for (const game of statArray) {
+    averages.points += parseInt(game.points);
+    averages.min += parseInt(game.min);
+    averages.fga += parseInt(game.fga);
+    averages.fgm += parseInt(game.fgm);
+    averages.ftm += parseInt(game.ftm);
+    averages.fta += parseInt(game.fta);
+    averages.tpm += parseInt(game.tpm);
+    averages.tpa += parseInt(game.tpa);
+    averages.offReb += parseInt(game.offReb);
+    averages.defReb += parseInt(game.defReb);
+    averages.totReb += parseInt(game.totReb);
+    averages.assists += parseInt(game.assists);
+    averages.steals += parseInt(game.steals);
+    averages.turnovers += parseInt(game.turnovers);
+    averages.blocks += parseInt(game.blocks);
+  }
+
+  // Divide all stats by number of gamesPlayed
+  for (const stat in averages) {
+    console.log(stat);
+    console.log(averages[stat]);
+    averages[stat] = averages[stat] / gamesPlayed;
+  }
+  console.log(averages);
+  console.log('GAMES PLAYED', gamesPlayed)
+  return averages;
 }
