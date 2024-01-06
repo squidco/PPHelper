@@ -45,7 +45,54 @@ app.post("/interactions", async function (req, res) {
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
             // Returns API response
-            content: JSON.stringify(playerInfo),
+            // content: JSON.stringify(playerInfo),
+            embeds: [
+              {
+                title: `${firstName} ${lastName}'s Stats`,
+                fields: [
+                  {
+                    name: "Minutes",
+                    value: `${playerInfo.min}`,
+                  },
+                  {
+                    name: "Points",
+                    value: `${playerInfo.points}`,
+                  },
+                  {
+                    name: "Field Goals",
+                    value: `${playerInfo.fgm}-${playerInfo.fga}`,
+                  },
+                  {
+                    name: "Free Throws",
+                    value: `${playerInfo.ftm}-${playerInfo.fta}`,
+                  },
+                  {
+                    name: "Three Pointers",
+                    value: `${playerInfo.tpm}-${playerInfo.tpa}`,
+                  },
+                  {
+                    name: "Rebounds",
+                    value: `O:${playerInfo.offReb}-D:${playerInfo.defReb}-Tot:${playerInfo.totReb}`,
+                  },
+                  {
+                    name: "Assists",
+                    value: `${playerInfo.assists}`,
+                  },
+                  {
+                    name: "Steals",
+                    value: `${playerInfo.steals}`,
+                  },
+                  {
+                    name: "Turnovers",
+                    value: `${playerInfo.turnovers}`,
+                  },
+                  {
+                    name: "Blocks",
+                    value: `${playerInfo.blocks}`,
+                  },
+                ],
+              },
+            ],
           },
         });
       } catch (error) {

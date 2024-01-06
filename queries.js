@@ -52,10 +52,15 @@ async function getPlayerStats(playerId) {
   }
 }
 
+// Searches for and averages a players stats
 export async function queryPlayer(firstName, lastName) {
+  // Chain of queries that first searches for a player ID
   const playerId = await getPlayerId(firstName, lastName);
+  // Gets their stats
   const playerStats = await getPlayerStats(playerId);
+  // Then averages their stats
   const averagedPlayerStats = averageStats(playerStats.response);
   console.log(averagedPlayerStats);
+  // And returns the averaged stats
   return averagedPlayerStats;
 }
