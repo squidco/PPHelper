@@ -93,7 +93,7 @@ export function averageStats(statArray) {
     assists: 0,
     steals: 0,
     turnovers: 0,
-    blocks: 0
+    blocks: 0,
   };
 
   // Add up all stats
@@ -117,11 +117,9 @@ export function averageStats(statArray) {
 
   // Divide all stats by number of gamesPlayed
   for (const stat in averages) {
-    console.log(stat);
-    console.log(averages[stat]);
-    averages[stat] = averages[stat] / gamesPlayed;
+    averages[stat] = Math.round(averages[stat] / gamesPlayed * 100) / 100;
   }
   console.log(averages);
-  console.log('GAMES PLAYED', gamesPlayed)
+  console.log("GAMES PLAYED", gamesPlayed);
   return averages;
 }
