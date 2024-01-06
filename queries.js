@@ -2,6 +2,26 @@ import "dotenv/config";
 import fetch from "node-fetch";
 import { averageStats } from "./utils.js";
 
+// Get current season
+async function getCurrentSeason() {
+  const url = "https://api-nba-v1.p.rapidapi.com/seasons";
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": process.env.API_KEY,
+      "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    return result.response
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 // Queries for a player by last name
 async function getPlayerId(firstName, lastName) {
   const lowerFirst = firstName.toLowerCase();
@@ -33,8 +53,10 @@ async function getPlayerId(firstName, lastName) {
 
 // Queries for player stats by ID
 async function getPlayerStats(playerId) {
-  const currentYear = new Date().getFullYear();
-  const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${playerId}&season=${currentYear}`;
+  const currentSeason = await getCurrentSeason();
+  const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${playerId}&season=${
+    currentSeason[currentSeason.length - 1]
+  }`;
   const options = {
     method: "GET",
     headers: {
