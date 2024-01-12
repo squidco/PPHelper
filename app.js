@@ -5,9 +5,11 @@ import { VerifyDiscordRequest } from "./utils.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+const presentDay = new Date()
 // Verify discord request with middleware
 app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
+
+
 
 // Interaction routes
 app.post("/interactions", async function (req, res) {
@@ -29,12 +31,10 @@ app.post("/interactions", async function (req, res) {
 
     // "nba" command
     if (name === "nba") {
-      // console.log(req.body);
-      // Should be the first name
-      // console.log(data.options);
+      console.log(data.options)
+
       const firstName = data.options[0].value;
-      // Should be the last name
-      // console.log(data.options[1].value);
+    
       const lastName = data.options[1].value;
       // Attempt to fetch data from API-NBA
       try {

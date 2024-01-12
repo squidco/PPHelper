@@ -120,6 +120,5 @@ export function averageStats(statArray) {
     averages[stat] = Math.round((averages[stat] / gamesPlayed) * 100) / 100;
   }
   console.log(averages);
-  console.log("GAMES PLAYED", gamesPlayed);
   return averages;
 }

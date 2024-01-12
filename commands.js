@@ -10,15 +10,21 @@ const SEARCH_COMMAND = {
       name: "firstname",
       description: "Player's first name",
       type: 3,
-      required: true
+      required: true,
     },
     {
       name: "lastname",
       description: "Player's last name",
       type: 3,
-      required: true
+      required: true,
     },
-  ]
+    {
+      name: "season",
+      description: "Season to retrieve stats from",
+      type: 3,
+      required: false,
+    },
+  ],
 };
 
 const ALL_COMMANDS = [SEARCH_COMMAND];
