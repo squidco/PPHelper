@@ -98,21 +98,23 @@ export function averageStats(statArray) {
 
   // Add up all stats
   for (const game of statArray) {
-    averages.points += parseInt(game.points);
-    averages.min += parseInt(game.min);
-    averages.fga += parseInt(game.fga);
-    averages.fgm += parseInt(game.fgm);
-    averages.ftm += parseInt(game.ftm);
-    averages.fta += parseInt(game.fta);
-    averages.tpm += parseInt(game.tpm);
-    averages.tpa += parseInt(game.tpa);
-    averages.offReb += parseInt(game.offReb);
-    averages.defReb += parseInt(game.defReb);
-    averages.totReb += parseInt(game.totReb);
-    averages.assists += parseInt(game.assists);
-    averages.steals += parseInt(game.steals);
-    averages.turnovers += parseInt(game.turnovers);
-    averages.blocks += parseInt(game.blocks);
+    if (game.min !== null) {
+      averages.points += parseInt(game.points);
+      averages.min += parseInt(game.min);
+      averages.fga += parseInt(game.fga);
+      averages.fgm += parseInt(game.fgm);
+      averages.ftm += parseInt(game.ftm);
+      averages.fta += parseInt(game.fta);
+      averages.tpm += parseInt(game.tpm);
+      averages.tpa += parseInt(game.tpa);
+      averages.offReb += parseInt(game.offReb);
+      averages.defReb += parseInt(game.defReb);
+      averages.totReb += parseInt(game.totReb);
+      averages.assists += parseInt(game.assists);
+      averages.steals += parseInt(game.steals);
+      averages.turnovers += parseInt(game.turnovers);
+      averages.blocks += parseInt(game.blocks);
+    }
   }
 
   // Divide all stats by number of gamesPlayed

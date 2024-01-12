@@ -1,6 +1,6 @@
 import { queryPlayer } from "./queries.js";
 
-queryPlayer("lebron", "james", "2023")
+queryPlayer("lebron", "james", "2019")
 // const year = new Date().getFullYear()
 // console.log(Date())
 // async function testingSeasonList() {
@@ -16,3 +16,5 @@ queryPlayer("lebron", "james", "2023")
 // }
 
 // testingSeasonList();
+
+console.log(8+parseInt(null))
