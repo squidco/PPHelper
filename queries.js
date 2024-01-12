@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import { averageStats } from "./utils.js";
 
 // Get current season
-async function getCurrentSeason() {
+export async function getSeasonList() {
   const url = "https://api-nba-v1.p.rapidapi.com/seasons";
   const options = {
     method: "GET",
@@ -16,7 +16,7 @@ async function getCurrentSeason() {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    return result.response
+    return result.response;
   } catch (error) {
     console.error(error);
   }
@@ -52,11 +52,8 @@ async function getPlayerId(firstName, lastName) {
 }
 
 // Queries for player stats by ID
-async function getPlayerStats(playerId) {
-  const currentSeason = await getCurrentSeason();
-  const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${playerId}&season=${
-    currentSeason[currentSeason.length - 1]
-  }`;
+async function getPlayerStats(playerId, season) {
+  const url = `https://api-nba-v1.p.rapidapi.com/players/statistics?id=${playerId}&season=${season}`;
   const options = {
     method: "GET",
     headers: {
@@ -75,11 +72,11 @@ async function getPlayerStats(playerId) {
 }
 
 // Searches for and averages a players stats
-export async function queryPlayer(firstName, lastName) {
+export async function queryPlayer(firstName, lastName, season) {
   // Chain of queries that first searches for a player ID
   const playerId = await getPlayerId(firstName, lastName);
   // Gets their stats
-  const playerStats = await getPlayerStats(playerId);
+  const playerStats = await getPlayerStats(playerId, season);
   // Then averages their stats
   const averagedPlayerStats = averageStats(playerStats.response);
   console.log(averagedPlayerStats);

@@ -122,23 +122,3 @@ export function averageStats(statArray) {
   console.log(averages);
   return averages;
 }
-
-// Get current season
-export async function getSeasonList() {
-  const url = "https://api-nba-v1.p.rapidapi.com/seasons";
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": process.env.API_KEY,
-      "X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com",
-    },
-  };
-
-  try {
-    const response = await fetch(url, options);
-    const result = await response.json();
-    return result.response
-  } catch (error) {
-    console.error(error);
-  }
-}

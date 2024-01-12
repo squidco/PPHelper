@@ -36,9 +36,11 @@ app.post("/interactions", async function (req, res) {
       const firstName = data.options[0].value;
     
       const lastName = data.options[1].value;
+
+      const season = data.options[2].value
       // Attempt to fetch data from API-NBA
       try {
-        const playerInfo = await queryPlayer(firstName, lastName);
+        const playerInfo = await queryPlayer(firstName, lastName, season);
         console.log("\n PLAYER INFO \n", playerInfo);
         // Send a message into the channel where command was triggered from
         return res.send({

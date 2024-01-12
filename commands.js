@@ -1,9 +1,6 @@
 import "dotenv/config";
-import {
-  InstallGlobalCommands,
-  InstallGuildCommands,
-  getSeasonList,
-} from "./utils.js";
+import { InstallGlobalCommands, InstallGuildCommands } from "./utils.js";
+import { getSeasonList } from "./queries.js";
 
 async function createSeasonChoices() {
   // Retrieves updated list of NBA seasons
@@ -17,6 +14,7 @@ async function createSeasonChoices() {
   return formattedList;
 }
 
+// Installs bot commands
 async function installCommands() {
   const seasonChoices = await createSeasonChoices();
 
@@ -49,6 +47,7 @@ async function installCommands() {
 
   const ALL_COMMANDS = [SEARCH_COMMAND];
 
+  // Checks if in development or production
   if (process.env.ENVIRONMENT === "development") {
     console.log("\n==== REGISTERING GUILD COMMANDS ====\n");
     // Guild commands install instantly according to the docs
