@@ -43,6 +43,7 @@ async function getPlayerId(firstName, lastName) {
     // Loop through results to see if the player exists
     for (const player of result.response) {
       if (lowerFirst === player.firstname.toLowerCase()) {
+        console.log(`\n ID FOUND \n ${player.id}`);
         return player.id;
       }
     }
@@ -65,6 +66,7 @@ async function getPlayerStats(playerId, season) {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
+    console.log(`\n FOUND PLAYER STATS`, result)
     return result;
   } catch (error) {
     console.error(error);
