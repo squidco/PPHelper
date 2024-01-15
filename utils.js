@@ -98,6 +98,7 @@ export function averageStats(statArray) {
 
   // Add up all stats
   for (const game of statArray) {
+    // Checks if they actually played in the game
     if (game.min !== null) {
       averages.points += parseInt(game.points);
       averages.min += parseInt(game.min);
